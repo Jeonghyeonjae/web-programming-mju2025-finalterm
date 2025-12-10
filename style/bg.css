@@ -1,0 +1,222 @@
+.tv-frame {
+  position: relative; /* 안에 있는 요소들을 겹치기 위해 필요 */
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; /* TV 밖으로 삐져나온 화면 제거 */
+  background-color: black;
+}
+
+.screen {
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1; /* wall.png 아래 */
+}
+
+.screen-1 {
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 4; /* wall.png 아래 */
+}
+
+.tv {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 6; /* TV 틀을 위로 올림 */
+  overflow: hidden;
+}
+
+.jerry {
+  position: relative;
+  width: 300px; /* 원하는 크기로 조절 */
+  left: 0%;
+  top: 70%;
+  z-index: 3; /* 몸이 위 */
+
+  animation: run 3s linear forwards;
+  animation-delay: 1.5s; /* ← 여기! 1.5초 뒤에 시작 */
+}
+
+.jerry-body {
+  width: 30%;
+  position: relative;
+  z-index: 2; /* 몸이 위 */
+}
+
+.jerry-leg {
+  position: absolute;
+  bottom: 0; /* 다리 위치를 몸에 맞게 조절 */
+  left: 10%;
+  top: 30%;
+  transform: translateX(-50%);
+  width: 80px; /* 다리 크기 */
+  animation: spin 0.3s linear infinite;
+  transform-origin: 50% 50%; /* 회전축 조절 (중요!) */
+  z-index: 3; /* 다리는 몸 뒤 */
+}
+
+/* 다리 회전 애니메이션 */
+@keyframes spin {
+  from {
+    transform: translateX(-50%) rotate(0deg);
+  }
+  to {
+    transform: translateX(-50%) rotate(360deg);
+  }
+}
+
+@keyframes run {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(1200px); /* 오른쪽으로 이동 */
+  }
+}
+
+@keyframes tom-run {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(2000px); /* 오른쪽으로 이동 */
+  }
+}
+.tom {
+  position: relative;
+  width: 1700px; /* 원하는 크기로 조절 */
+  left: -50%;
+  top: 35%;
+  z-index: 5; /* 몸이 위 */
+
+  animation: tom-run 5s linear forwards;
+  animation-delay: 1.5s;
+}
+
+.tom-body {
+  width: 30%;
+  position: relative;
+  z-index: 2; /* 몸이 위 */
+}
+
+.tom-leg {
+  position: absolute;
+  bottom: 0; /* 다리 위치를 몸에 맞게 조절 */
+  left: 10%;
+  top: 20%;
+  transform: translateX(-50%);
+  width: 15%; /* 다리 크기 */
+  animation: spin 0.3s linear infinite;
+  transform-origin: 50% 50%; /* 회전축 조절 (중요!) */
+  z-index: 3; /* 다리는 몸 뒤 */
+}
+
+.screen-mask {
+  position: absolute;
+  top: 50%;
+  left: 48%; /* TV 화면의 X 중심 */
+  transform: translate(-50%, -50%);
+  width: 72%; /* TV 가로 화면 비율 */
+  height: 70%; /* TV 세로 화면 비율 */
+  overflow: hidden; /* 마스크 영역 바깥은 보이지 않음 */
+  z-index: 3;
+}
+
+.tail-logo {
+  position: absolute;
+  width: 70%;
+  left: -80%;
+  bottom: 12%;
+
+  animation: runLogo 4.3s linear forwards; /* 톰보다 느리게 */
+  animation-delay: 2s;
+  z-index: 5;
+}
+
+@keyframes runLogo {
+  from {
+    transform: translateX(-250px);
+  }
+  to {
+    transform: translateX(950px);
+  }
+}
+
+.jerry-up {
+  position: absolute;
+  height: 400px;
+  bottom: -700px; /* 시작 위치 (아래에 숨어 있음) */
+  left: 10%;
+  transform: translateX(-50%);
+  animation: jerryBounce 1.6s ease-in-out forwards;
+
+  animation-delay: 7s;
+  z-index: 8;
+}
+
+@keyframes jerryBounce {
+  0% {
+    bottom: -500px; /* 아래에서 시작 */
+  }
+  20% {
+    bottom: 100px; /* 아래에서 시작 */
+  }
+  40% {
+    bottom: 0px; /* 아래에서 시작 */
+  }
+  60% {
+    bottom: 20px; /* 위로 올라옴 (최고점) */
+  }
+  80% {
+    bottom: 0px; /* 살짝 아래로 떨어짐 */
+  }
+  100% {
+    bottom: 00px; /* 최종 위치 안정 */
+  }
+}
+
+.tom-up {
+  position: absolute;
+  height: 590px;
+  bottom: -1000px; /* 시작 위치 (아래에 숨어 있음) */
+  right: -20%;
+  transform: translateX(-50%);
+  animation: tomBounce 1.6s ease-in-out forwards;
+
+  animation-delay: 8.6s;
+  z-index: 8;
+}
+
+@keyframes tomBounce {
+  0% {
+    bottom: -500px; /* 아래에서 시작 */
+  }
+  20% {
+    bottom: 100px;
+  }
+  40% {
+    bottom: 0px; /* 아래에서 시작 */
+  }
+  60% {
+    bottom: 20px; /* 위로 올라옴 (최고점) */
+  }
+  80% {
+    bottom: 0px; /* 살짝 아래로 떨어짐 */
+  }
+  100% {
+    bottom: 00px; /* 최종 위치 안정 */
+  }
+}
